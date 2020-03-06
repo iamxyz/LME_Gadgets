@@ -1,0 +1,674 @@
+---
+title: "Report on Mistakes I made in DDM 635"
+author: "Yulong Deng"
+date: "2020-3-6"
+output:
+  html_document: default
+  pdf_document: default
+  word_document: default
+---
+#### R version 3.3.2, Program version: 1.1, Last updated by Yulong Deng: 2020-3-6
+
+```{r echo=FALSE}
+library(stringr)
+library(knitr)
+```
+
+
+
+```{r echo=FALSE}
+################################ Part 1,This part can be modified  ##############################
+################################ Refer to patterns as you modify them ###########################
+# Definition of ddm_mistakes_category
+# name of the DDM
+name_of_DDM <- "DDM635"
+# number of sections in the DDM
+number_of_sections <- 4
+
+# number of mistakes categories
+number_of_ddm_mistakes_categories <- 9
+
+# categories lists
+###### Pattern for defining of modifying categories lists #########################################
+# ddm_mistakes_category_x <- c("x:NAME of Category", "1:NAME of the first Subcategory", "2:NAME of the first Subcategory",......,"n:NAME of the nth Subcategory")
+## NOTOCICE:
+## 1. if there isn't any subcategory in the category, put "0:" after the "x:NAME of Category"
+## 2. you can add or delete or modify categories lists, but you must modify the number of mistakes categories to keep the changes synchronized
+##################################################################################################
+ddm_mistakes_category_1 <- c("1:Reduction","1:I'm", "2:I'd", "3:to(t')(d')", "4:ing('n)", "5:them('m)", "6:wanna", "7:around('round)", "8:can(k'n)", "9:you(y')" )
+ddm_mistakes_category_2 <- c("2:Cancellation", "1:S-W rule", "2:7Hs rule")
+ddm_mistakes_category_3 <- c("3:Stop sound", "1:Stop-t", "2:Stop-d")
+ddm_mistakes_category_4 <- c("4:Flap sound", "1:Flap-t")
+ddm_mistakes_category_5 <- c("5:linking","0:")
+ddm_mistakes_category_6 <- c("6:Blending", "1:2-8 blending")
+ddm_mistakes_category_7 <- c("7:Vocabulary","0:")
+ddm_mistakes_category_8 <- c("8:Basic Pronunication","1:vowel","2:consonant")
+ddm_mistakes_category_9 <- c("9:Unknown","0:")
+
+################################# Part 1 END #####################################################
+```
+
+
+
+```{r echo=FALSE}
+
+################################ Part 2, Don't modify the part  #################################
+
+# get ddm_mistake_categories
+
+ddm_mistakes_categories <- vector("list", length = number_of_ddm_mistakes_categories)
+
+for(i in c(1:number_of_ddm_mistakes_categories)){
+   each_category_name <- paste("ddm_mistakes_category_", i, sep="")
+   each_category_vector <- NULL
+   eval(parse(text = paste("each_category_vector <-", each_category_name)))
+   length_of_each_category_vector <- length(each_category_vector)
+   ddm_mistakes_categories[[i]] <- rep("",  length_of_each_category_vector)
+   
+   for(j in c(1:length_of_each_category_vector)){
+   ddm_mistakes_categories[[i]][j] <-  str_sub(each_category_vector[j],str_locate(each_category_vector[1],"\\:")[1]+1)
+   }
+}
+
+# create list for all my mistakes
+
+all_my_mistakes <- vector("list", length = number_of_ddm_mistakes_categories)
+
+for(i in c(1:number_of_ddm_mistakes_categories)){
+    # get the possible number of each subcategories
+   each_category_name <- paste("ddm_mistakes_category_", i, sep="")
+   each_category_vector_length <- 0
+   number_of_subcategory <- 0
+   eval(parse(text = paste("each_category_vector_length <- length(",paste(each_category_name,")"))))
+   number_of_subcategory <- each_category_vector_length - 1
+   all_my_mistakes[[i]] <- rep(0, number_of_subcategory)
+}
+
+################################### Part 2  END   ##############################################
+
+```
+## 1. Report on Each Section 
+
+### 1.1 Section 1 
+![Section 1](ddm_635_1.png)
+
+
+
+```{r echo=FALSE}
+
+################################ Part 3,This part can be modified  ################################
+################################ Refer to patterns as you modify them ############################
+
+# Record my mistakes in section 1 
+
+# number of the mistakes I made in section 1 of this DDM assignment
+number_of_mistakes_section_1 <- 6
+
+# mistakes lists for section 1
+###### Pattern for defining of modifying categories lists ########################################
+# mistakes_I_made_1_x <- c("Original Fragments", "What I heard", "What it should be",ID of mistake category, ID of mistake subcategory, ID of mistake category, ID of mistke subcategory......)
+## NOTOCICE:
+## 1. You can leave "Original Fragments", "What I heard" and "What it should be" blank by using ""
+## 2. if there isn't any subcategory in the category, set the ID of mistake category to 0 
+## 3. you can add or delete or modify mistakes lists for your own answers, but you must modify the number_of_mistakes_section_1 to keep the changes synchronized
+##################################################################################################
+
+mistakes_I_made_1_1 <- c("I'm", "and", "", 1, 1)
+mistakes_I_made_1_2 <- c("I'd much rather", "I'll try to","I much-rather",1, 2, 5, 0)
+mistakes_I_made_1_3 <- c("Like I did in '79", "I'll get it at 79","Like-I, did-in", 5, 0)
+mistakes_I_made_1_4 <- c("Village then", "?", "Villege-then",5,0,7,0)
+mistakes_I_made_1_5 <- c("Don't really","I don't", "", 9, 0)
+mistakes_I_made_1_6 <- c("really", "even", "", 9, 0)
+
+################################ Part 3 END  ###################################################
+
+################################ Part 4, Don't modify them  ######################################
+
+# Calculate my mistakes in section 1
+
+all_my_mistakes_section_1 <- vector("list", length = number_of_mistakes_section_1)
+
+for(i in c(1:number_of_mistakes_section_1)){
+   each_mistake_name <- paste("mistakes_I_made_1_", i, sep="")
+   each_mistake_vector <- NULL
+   eval(parse(text = paste("each_mistake_vector <-", each_mistake_name)))
+   all_my_mistakes_section_1[[i]]<- rep("", 4)
+   all_my_mistakes_section_1[[i]][1] <- each_mistake_vector[1]
+   all_my_mistakes_section_1[[i]][2] <- each_mistake_vector[2]
+   all_my_mistakes_section_1[[i]][3] <- each_mistake_vector[3]
+   all_my_mistakes_section_1[[i]][4] <- ""
+
+   length_of_each_mistake_vector <- length(each_mistake_vector)
+
+   temp_vector <- NULL
+   turns_of_loop <- (length_of_each_mistake_vector-3) / 2
+   k <- 4
+   for(j in c(1:turns_of_loop)){
+
+       current_category <-  ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][1]
+       if(as.numeric(each_mistake_vector[k+1])!=0){
+           current_subcategory <- ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])+1]
+       }else{
+           current_subcategory <- ""
+       }
+        temp_vector <-
+            c(temp_vector, paste(current_category,paste(":",current_subcategory)))
+        temp_vector <- c(temp_vector, "; ")
+        
+        # record the points value in all_my_mistakes list
+        
+        if(as.numeric(each_mistake_vector[k+1]) !=0){
+        
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])] <- temp_value
+        
+             }else{
+            
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1] <- temp_value
+            
+        }
+        
+        k <- k + 2
+
+   }
+     
+     all_my_mistakes_section_1[[i]][4] <-str_c(temp_vector, collapse="")
+
+}
+
+
+# print out the report table for current section
+
+temp_vector1 <- NULL
+
+for(i in c(1:number_of_ddm_mistakes_categories)){
+
+    temp_vector1 <- c(temp_vector1,ddm_mistakes_categories [[i]][1])
+
+}
+
+matrix_for_print <- matrix("",nrow = number_of_mistakes_section_1, ncol = 4)
+colnames(matrix_for_print) <- c("Original Fragments", "What I heard", "What it should be","Why I made mistakes")
+
+dataframe_for_print <- as.data.frame(matrix_for_print)
+
+dataframe_for_print[,1]<- as.character(dataframe_for_print[,1])
+dataframe_for_print[,2]<- as.character(dataframe_for_print[,2])
+dataframe_for_print[,3]<- as.character(dataframe_for_print[,3])
+dataframe_for_print[,4]<- as.character(dataframe_for_print[,4])
+
+for(i in c(1:number_of_mistakes_section_1)){
+
+    for(j in 1:4){
+         dataframe_for_print[i,j] <-  as.character(all_my_mistakes_section_1[[i]][j])
+    }
+
+}
+
+kable(dataframe_for_print,row.names = TRUE)
+
+################################### Part 4  END   ##############################################
+
+```
+
+### 1.2 Section 2
+![Section 2](ddm_635_2.png)
+
+```{r echo=FALSE}
+
+################################ Part 5,This part can be modified  ################################
+################################ Refer to patterns as you modify them ############################
+
+# Record my mistakes in section 2 
+
+# number of the mistakes I made in section 2 of this DDM assignment
+
+number_of_mistakes_section_2 <- 6
+
+# mistakes lists for section 2
+###### Pattern for defining of modifying categories lists ########################################
+# mistakes_I_made_1_x <- c("Original Fragments", "What I heard", "What it should be",ID of mistake category, ID of mistake subcategory, ID of mistake category, ID of mistke subcategory......)
+## NOTOCICE:
+## 1. You can leave "Original Fragments", "What I heard" and "What it should be" blank by using ""
+## 2. if there isn't any subcategory in the category, set the ID of mistake category to 0 
+## 3. you can add or delete or modify mistakes lists for your own answers, but you must modify the number_of_mistakes_section_1 to keep the changes synchronized
+##################################################################################################
+
+mistakes_I_made_2_1 <- c("I had them done..", "I haven't done", "Had-'m", 1, 5, 5, 0)
+mistakes_I_made_2_2 <- c("..the Peterman bash I'm throwing", "The Peterman fashion throwing","Bash-I'm",7, 0, 5, 0)
+mistakes_I_made_2_3 <- c("Why are you having a party", "Why am I at the party","Wire yer av 'n-nuh", 1, 9, 1, 4, 2, 2, 5, 0)
+mistakes_I_made_2_4 <- c("Well, I drive my people", "you drive party people", "",9,0)
+mistakes_I_made_2_5 <- c("..I reward them","..I reward", "'m", 1, 5, 6, 1)
+mistakes_I_made_2_6 <- c("Like with dog", "Like dogs", "withD", 6, 1)
+
+################################ Part 5 END  ###################################################
+
+################################ Part 6, Don't modify the part ###############################
+
+# Calculate my mistakes in section 2
+
+all_my_mistakes_section_2 <- vector("list", length = number_of_mistakes_section_2)
+
+for(i in c(1:number_of_mistakes_section_2)){
+   each_mistake_name <- paste("mistakes_I_made_2_", i, sep="")
+   each_mistake_vector <- NULL
+   eval(parse(text = paste("each_mistake_vector <-", each_mistake_name)))
+   all_my_mistakes_section_2[[i]]<- rep("", 4)
+   all_my_mistakes_section_2[[i]][1] <- each_mistake_vector[1]
+   all_my_mistakes_section_2[[i]][2] <- each_mistake_vector[2]
+   all_my_mistakes_section_2[[i]][3] <- each_mistake_vector[3]
+   all_my_mistakes_section_2[[i]][4] <- ""
+
+   length_of_each_mistake_vector <- length(each_mistake_vector)
+
+   temp_vector <- NULL
+   turns_of_loop <- (length_of_each_mistake_vector-3) / 2
+   k <- 4
+   for(j in c(1:turns_of_loop)){
+
+       current_category <-  ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][1]
+       if(as.numeric(each_mistake_vector[k+1])!=0){
+           current_subcategory <- ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])+1]
+       }else{
+           current_subcategory <- ""
+       }
+        temp_vector <-
+            c(temp_vector, paste(current_category,paste(":",current_subcategory)))
+        temp_vector <- c(temp_vector, "; ")
+        
+        # record the points value in all_my_mistakes list
+        
+        if(as.numeric(each_mistake_vector[k+1]) !=0){
+        
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])] <- temp_value
+        
+             }else{
+            
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1] <- temp_value
+            
+        }
+        
+        k <- k + 2
+
+   }
+     
+     all_my_mistakes_section_2[[i]][4] <-str_c(temp_vector, collapse="")
+
+}
+
+
+# print out the report table for current section
+
+temp_vector1 <- NULL
+
+for(i in c(1:number_of_ddm_mistakes_categories)){
+
+    temp_vector1 <- c(temp_vector1,ddm_mistakes_categories [[i]][1])
+
+}
+
+matrix_for_print <- matrix("",nrow = number_of_mistakes_section_2, ncol = 4)
+colnames(matrix_for_print) <- c("Original Fragments", "What I heard", "What it should be","Why I made mistakes")
+
+dataframe_for_print <- as.data.frame(matrix_for_print)
+
+dataframe_for_print[,1]<- as.character(dataframe_for_print[,1])
+dataframe_for_print[,2]<- as.character(dataframe_for_print[,2])
+dataframe_for_print[,3]<- as.character(dataframe_for_print[,3])
+dataframe_for_print[,4]<- as.character(dataframe_for_print[,4])
+
+for(i in c(1:number_of_mistakes_section_2)){
+
+    for(j in 1:4){
+         dataframe_for_print[i,j] <-  as.character(all_my_mistakes_section_2[[i]][j])
+    }
+
+}
+
+kable(dataframe_for_print, row.names = TRUE)
+
+################################ Part 6 END  ###################################################
+
+```
+
+
+### 1.3 Section 3
+![Section 3](ddm_635_3.png)
+
+```{r echo=FALSE}
+
+################################ Part 7,This part can be modified  ################################
+################################ Refer to patterns as you modify them ############################
+
+# Record my mistakes in section 3 
+
+# number of the mistakes I made in section 3 of this DDM assignment
+
+number_of_mistakes_section_3 <- 6
+
+# mistakes lists for section 3
+###### Pattern for defining of modifying categories lists ########################################
+# mistakes_I_made_1_x <- c("Original Fragments", "What I heard", "What it should be",ID of mistake category, ID of mistake subcategory, ID of mistake category, ID of mistke subcategory......)
+## NOTOCICE:
+## 1. You can leave "Original Fragments", "What I heard" and "What it should be" blank by using ""
+## 2. if there isn't any subcategory in the category, set the ID of mistake category to 0 
+## 3. you can add or delete or modify mistakes lists for your own answers, but you must modify the number_of_mistakes_section_1 to keep the changes synchronized
+##################################################################################################
+
+mistakes_I_made_3_1 <- c("..seeing you around the office", "..seeing you on the office", "Around->'round", 1, 7, 8, 1)
+mistakes_I_made_3_2 <- c("oh", "Thanks","Bash-I'm",9, 0)
+mistakes_I_made_3_3 <- c("so", "sure","Wire yer av 'n-nuh", 8, 1)
+mistakes_I_made_3_4 <- c("Leading us in a toast", "Lady.. toast", "",5,0)
+mistakes_I_made_3_5 <- c("..Hey, guys, I wanna make a toast","Hey, guys, we make a toast", "", 1, 6)
+mistakes_I_made_3_6 <- c("..and those who don't.. ", "..and those you don't..", "", 9, 0)
+
+################################ Part 7 END  ###################################################
+
+################################ Part 8, Don't modify the part ###############################
+
+# Calculate my mistakes in section 3
+
+all_my_mistakes_section_3 <- vector("list", length = number_of_mistakes_section_3)
+
+for(i in c(1:number_of_mistakes_section_3)){
+   each_mistake_name <- paste("mistakes_I_made_3_", i, sep="")
+   each_mistake_vector <- NULL
+   eval(parse(text = paste("each_mistake_vector <-", each_mistake_name)))
+   all_my_mistakes_section_3[[i]]<- rep("", 4)
+   all_my_mistakes_section_3[[i]][1] <- each_mistake_vector[1]
+   all_my_mistakes_section_3[[i]][2] <- each_mistake_vector[2]
+   all_my_mistakes_section_3[[i]][3] <- each_mistake_vector[3]
+   all_my_mistakes_section_3[[i]][4] <- ""
+
+   length_of_each_mistake_vector <- length(each_mistake_vector)
+
+   temp_vector <- NULL
+   turns_of_loop <- (length_of_each_mistake_vector-3) / 2
+   k <- 4
+   for(j in c(1:turns_of_loop)){
+
+       current_category <-  ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][1]
+       if(as.numeric(each_mistake_vector[k+1])!=0){
+           current_subcategory <- ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])+1]
+       }else{
+           current_subcategory <- ""
+       }
+        temp_vector <-
+            c(temp_vector, paste(current_category,paste(":",current_subcategory)))
+        temp_vector <- c(temp_vector, "; ")
+        
+        # record the points value in all_my_mistakes list
+        
+        if(as.numeric(each_mistake_vector[k+1]) !=0){
+        
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])] <- temp_value
+        
+             }else{
+            
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1] <- temp_value
+            
+        }
+        
+        k <- k + 2
+
+   }
+     
+     all_my_mistakes_section_3[[i]][4] <-str_c(temp_vector, collapse="")
+
+}
+
+
+# print out the report table for current section
+
+temp_vector1 <- NULL
+
+for(i in c(1:number_of_ddm_mistakes_categories)){
+
+    temp_vector1 <- c(temp_vector1,ddm_mistakes_categories [[i]][1])
+
+}
+
+matrix_for_print <- matrix("",nrow = number_of_mistakes_section_3, ncol = 4)
+colnames(matrix_for_print) <- c("Original Fragments", "What I heard", "What it should be","Why I made mistakes")
+
+dataframe_for_print <- as.data.frame(matrix_for_print)
+
+dataframe_for_print[,1]<- as.character(dataframe_for_print[,1])
+dataframe_for_print[,2]<- as.character(dataframe_for_print[,2])
+dataframe_for_print[,3]<- as.character(dataframe_for_print[,3])
+dataframe_for_print[,4]<- as.character(dataframe_for_print[,4])
+
+for(i in c(1:number_of_mistakes_section_3)){
+
+    for(j in 1:4){
+         dataframe_for_print[i,j] <-  as.character(all_my_mistakes_section_3[[i]][j])
+    }
+
+}
+
+kable(dataframe_for_print, row.names = TRUE)
+
+################################ Part 8 END  ###################################################
+
+```
+
+### 1.4 Section 4
+
+![Section 4](ddm_635_4.png)
+
+
+```{r echo=FALSE}
+
+################################ Part 9,This part can be modified  ################################
+################################ Refer to patterns as you modify them ############################
+
+# Record my mistakes in section 4 
+
+# number of the mistakes I made in section 3 of this DDM assignment
+
+number_of_mistakes_section_4 <- 11
+
+# mistakes lists for section 4
+###### Pattern for defining of modifying categories lists ########################################
+# mistakes_I_made_1_x <- c("Original Fragments", "What I heard", "What it should be",ID of mistake category, ID of mistake subcategory, ID of mistake category, ID of mistke subcategory......)
+## NOTOCICE:
+## 1. You can leave "Original Fragments", "What I heard" and "What it should be" blank by using ""
+## 2. if there isn't any subcategory in the category, set the ID of mistake category to 0 
+## 3. you can add or delete or modify mistakes lists for your own answers, but you must modify the number_of_mistakes_section_1 to keep the changes synchronized
+##################################################################################################
+
+mistakes_I_made_4_1 <- c("Do you think..", "You think", "", 9, 0)
+mistakes_I_made_4_2 <- c("You can get", "You get","Can-> k'n",1, 8)
+mistakes_I_made_4_3 <- c("..friend Brody?", "..friend ?","", 7, 0)
+mistakes_I_made_4_4 <- c("You know what I had to go through", "You don't wanna ahead go through", "Y' know whaD-I ad-t'", 4, 1, 2, 2, 5, 0, 1, 3)
+mistakes_I_made_4_5 <- c("Go through to get","Go through and get", "To->d'", 1, 3)
+mistakes_I_made_4_6 <- c("..get these", "..get this", "", 8, 1)
+mistakes_I_made_4_7 <- c("Yeah, I know,but he's a..", "Yeah,nobody is a", "Know-bd'-e", 4, 1, 2, 2, 5, 0)
+mistakes_I_made_4_8 <- c("..a big fan of the genre", "..a big fan of ?", "", 7, 0)
+mistakes_I_made_4_9 <- c("You know, I'd", "You now", "", 3, 2, 8, 1)
+mistakes_I_made_4_10 <- c("Consider it a ..", "Consider the..", "Consider-id-a", 3, 1, 5, 0)
+mistakes_I_made_4_11 <- c("Favor to", "avorite", "Favor-d'", 1, 3)
+
+################################ Part 9 END  ###################################################
+
+################################ Part 10, Don't modify the part ###############################
+
+# Calculate my mistakes in section 4
+
+all_my_mistakes_section_4 <- vector("list", length = number_of_mistakes_section_4)
+
+for(i in c(1:number_of_mistakes_section_4)){
+   each_mistake_name <- paste("mistakes_I_made_4_", i, sep="")
+   each_mistake_vector <- NULL
+   eval(parse(text = paste("each_mistake_vector <-", each_mistake_name)))
+   all_my_mistakes_section_4[[i]]<- rep("", 4)
+   all_my_mistakes_section_4[[i]][1] <- each_mistake_vector[1]
+   all_my_mistakes_section_4[[i]][2] <- each_mistake_vector[2]
+   all_my_mistakes_section_4[[i]][3] <- each_mistake_vector[3]
+   all_my_mistakes_section_4[[i]][4] <- ""
+
+   length_of_each_mistake_vector <- length(each_mistake_vector)
+
+   temp_vector <- NULL
+   turns_of_loop <- (length_of_each_mistake_vector-3) / 2
+   k <- 4
+   for(j in c(1:turns_of_loop)){
+
+       current_category <-  ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][1]
+       if(as.numeric(each_mistake_vector[k+1])!=0){
+           current_subcategory <- ddm_mistakes_categories[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])+1]
+       }else{
+           current_subcategory <- ""
+       }
+        temp_vector <-
+            c(temp_vector, paste(current_category,paste(":",current_subcategory)))
+        temp_vector <- c(temp_vector, "; ")
+        
+        # record the points value in all_my_mistakes list
+        
+        if(as.numeric(each_mistake_vector[k+1]) !=0){
+        
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][as.numeric(each_mistake_vector[k+1])] <- temp_value
+        
+             }else{
+            
+             temp_value <- all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1]
+             temp_value <- temp_value + 1
+             all_my_mistakes[[as.numeric(each_mistake_vector[k])]][1] <- temp_value
+            
+        }
+        
+        k <- k + 2
+
+   }
+     
+     all_my_mistakes_section_4[[i]][4] <-str_c(temp_vector, collapse="")
+
+}
+
+
+# print out the report table for current section
+
+temp_vector1 <- NULL
+
+for(i in c(1:number_of_ddm_mistakes_categories)){
+
+    temp_vector1 <- c(temp_vector1,ddm_mistakes_categories [[i]][1])
+
+}
+
+matrix_for_print <- matrix("",nrow = number_of_mistakes_section_4, ncol = 4)
+colnames(matrix_for_print) <- c("Original Fragments", "What I heard", "What it should be","Why I made mistakes")
+
+dataframe_for_print <- as.data.frame(matrix_for_print)
+
+dataframe_for_print[,1]<- as.character(dataframe_for_print[,1])
+dataframe_for_print[,2]<- as.character(dataframe_for_print[,2])
+dataframe_for_print[,3]<- as.character(dataframe_for_print[,3])
+dataframe_for_print[,4]<- as.character(dataframe_for_print[,4])
+
+for(i in c(1:number_of_mistakes_section_4)){
+
+    for(j in 1:4){
+         dataframe_for_print[i,j] <-  as.character(all_my_mistakes_section_4[[i]][j])
+    }
+
+}
+
+
+kable(dataframe_for_print, row.names = TRUE)
+
+################################ Part 10 END  ###################################################
+
+```
+
+
+
+## 2. Summary
+
+
+```{r echo=FALSE}
+
+################################ Part 11, Don't modify the part ###############################
+
+# get mistakes I made
+
+
+# get the total number of mistakes
+
+total_points_for_each_category <- rep(0, number_of_ddm_mistakes_categories)
+
+ddm_mistakes_main_categories <- NULL 
+
+for(i in 1:number_of_ddm_mistakes_categories){
+    
+    total_points_for_each_category[i] <- sum(all_my_mistakes[[i]])
+    
+    ddm_mistakes_main_categories <- c(ddm_mistakes_main_categories, ddm_mistakes_categories[[i]][1])
+    
+}
+
+total_points_for_all_categories <- sum( total_points_for_each_category)
+
+# print out the report table for whole  sections
+
+matrix_for_print <- matrix("",nrow = number_of_ddm_mistakes_categories, ncol = 2)
+colnames(matrix_for_print) <- c("Why I made mistakes", "Rate (%)")
+
+
+dataframe_for_print <- as.data.frame(matrix_for_print)
+
+dataframe_for_print[,1]<- as.character(dataframe_for_print[,1])
+dataframe_for_print[,2]<- as.numeric(dataframe_for_print[,2])
+
+
+for(i in c(1:number_of_ddm_mistakes_categories)){
+    
+    dataframe_for_print[i,1] <- as.character(ddm_mistakes_main_categories[i])
+    dataframe_for_print[i,2]  <- round(total_points_for_each_category[i] * 100  / total_points_for_all_categories, 2)
+   
+}
+
+# order by rates
+
+dataframe_for_print <- dataframe_for_print[order(dataframe_for_print[,2],decreasing = TRUE),]
+
+dataframe_for_print[,1]<- as.character(dataframe_for_print[,1])
+dataframe_for_print[,2]<- as.character(dataframe_for_print[,2])
+
+row.names(dataframe_for_print) <- c(1:number_of_ddm_mistakes_categories)
+
+kable(dataframe_for_print, row.names = TRUE)
+
+
+# print out Pie charts for whole categories
+
+names(total_points_for_each_category) <-  ddm_mistakes_main_categories
+pie(total_points_for_each_category, init.angle = 100, main = paste("All Mistakes in", name_of_DDM))
+
+# print out Bar charts for each category
+
+for(i in 1:number_of_ddm_mistakes_categories){
+    
+    barplot(all_my_mistakes[[i]], names.arg = (ddm_mistakes_categories[[i]])[-1], main =
+                paste("Mistakes in",ddm_mistakes_main_categories[i]))
+    
+}
+
+################################ Part 11 END  ###################################################
+
+```
+
